@@ -2,37 +2,42 @@ console.log('%c HI', 'color: yellow')
 
 const imgUrl = "https://dog.ceo/api/breeds/image/random/4"
 const breedUrl = 'https://dog.ceo/api/breeds/list/all'
-// document.addEventListener("DOMContentLoaded", function(){
-  fetch(imgUrl)
-  .then(res => res.json())
-  .then(dogoUrls => {
-    // debugger
-    dogoUrls.message.map(dogPicUrl => {
-      let frame = document.querySelector("#dog-image-container")
-      let dogElement = document.createElement("img")
-      dogElement.src = dogPicUrl
-      frame.appendChild(dogElement)
 
-    })
+document.addEventListener("DOMContentLoaded", function(){
+  fetchPics()
+  fetchBreeds()
+ })
 
+ // [ ] on page load, fetch all the dog breeds
+ // [ ] add the breeds to the page in an <ul>
 
+ function fetchBreeds() {
+   fetch(breedUrl)
+   .then(res => res.json())
+   .then(breeds => {
+     {debugger}
+     dogoUrls.message.map(dogPicUrl => {
+       let frame = document.querySelector("#dog-image-container")
+       let dogElement = document.createElement("img")
 
-    // let dogPicUrl = dogoUrls.message[0]
-    // debugger
-    // document.createElement("")
+       dogElement.src = dogPicUrl
+       dogElement.style.width = "25%"
+       frame.appendChild(dogElement)
+     })
+   })
+ }
 
+function fetchPics() {
+fetch(imgUrl)
+.then(res => res.json())
+.then(dogoUrls => {
+  dogoUrls.message.map(dogPicUrl => {
+    let frame = document.querySelector("#dog-image-container")
+    let dogElement = document.createElement("img")
 
-
-
-      // fetch(dogPicUrl)
-      // .then(r => r.json())
-      // .then(data => {debugger})
+    dogElement.src = dogPicUrl
+    dogElement.style.width = "25%"
+    frame.appendChild(dogElement)
   })
-// })
-
-/*
-on page load
--X fetch the images using the url above ⬆️
--X parse the response as `JSON`
--X add image elements to the DOM **for each**🤔 image in the array
-*/
+})
+}

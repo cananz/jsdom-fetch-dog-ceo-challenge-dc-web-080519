@@ -16,8 +16,10 @@ document.addEventListener("DOMContentLoaded", function(){
  // [x] change font color of that item
 
  function breedClick(e) {
-   console.log("click on " + e.target.id)
-   e.target.style.color = "#9ACD32"
+   console.log("click on " + e.currentTarget.id)
+
+   // debugger
+   e.currentTarget.style.color = "#9ACD32"
  }
 
  function fetchBreeds() {

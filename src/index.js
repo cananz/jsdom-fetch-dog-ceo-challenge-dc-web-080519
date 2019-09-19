@@ -2,16 +2,27 @@
 
 
 document.addEventListener("DOMContentLoaded", function(){
-  console.log("taking some puppy pics")
+  console.log("taking some puppy pics") //challenge 1
   fetchPics()
-  console.log("listing dog breeds")
+
+  console.log("listing dog breeds") //challenge 2
   fetchBreeds()
+
  })
 
- // [ ] on page load, fetch all the dog breeds
- // [ ] add the breeds to the page in an <ul>
+
+ // [x] addEventListener - click
+ // [x] dog-breed list item
+ // [x] change font color of that item
+
+ function breedClick(e) {
+   console.log("click on " + e.target.id)
+   e.target.style.color = "#9ACD32"
+ }
 
  function fetchBreeds() {
+   // [x] on page load, fetch all the dog breeds
+   // [x] add the breeds to the page in an <ul>
    const breedUrl = 'https://dog.ceo/api/breeds/list/all'
    fetch(breedUrl)
    .then(res => res.json())
@@ -26,6 +37,7 @@ document.addEventListener("DOMContentLoaded", function(){
        dogBreedLI.innerText = breedName
        dogBreedLI.id = breedName
        breedList.appendChild(dogBreedLI)
+       dogBreedLI.addEventListener("click", breedClick)
      })
    })
  }
